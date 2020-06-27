@@ -1,0 +1,26 @@
+.contactBox {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid rgba(148, 146, 146, 0.4);
+    padding: 8px 0;
+    margin-bottom: 3px;
+}
+
+.contactBox div {
+    width: 30%;
+    text-align: center;
+}
+
+.name,
+.number {
+    align-self: center;
+}
+
+.contactBox:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+.btn {
+    padding: 3px 10px;
+    cursor: pointer;
+}

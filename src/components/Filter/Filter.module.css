@@ -1,7 +1,3 @@
-form {
-    margin-bottom: 15px;
-}
-
 .input {
     padding: 10px;
     width: 377px;
@@ -13,9 +9,4 @@ form {
     font-weight: 500;
     margin-bottom: 10px;
     text-align: left;
-}
-
-.btn {
-    padding: 10px;
-    width: 200px;
 }
