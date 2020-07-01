@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { v4 as uuidv4 } from 'uuid';
 
 import s from './Form.module.css';
@@ -10,7 +12,8 @@ class Form extends Component {
         number: '',
     };
 
-    createId = uuidv4();
+    createIdName = uuidv4();
+    createIdNumber = uuidv4();
 
     saveContact = e => {
         const { name, value } = e.currentTarget;
@@ -36,7 +39,7 @@ class Form extends Component {
     render() {
         return (
             <form onSubmit={this.submitContact}>
-                <label className={s.label} htmlFor={this.createId}>
+                <label className={s.label} htmlFor={this.createIdName}>
                     <div className={s.head__field}>Name</div>
                     <input
                         type="text"
@@ -44,11 +47,11 @@ class Form extends Component {
                         className={s.input}
                         value={this.state.name}
                         onChange={this.saveContact}
-                        id={this.createId}
-                    ></input>
+                        id={this.createIdName}
+                    />
                 </label>
 
-                <label className={s.label} htmlFor={this.createId}>
+                <label className={s.label} htmlFor={this.createIdNumber}>
                     <div className={s.head__field}>Number</div>
                     <input
                         type="tel"
@@ -56,8 +59,8 @@ class Form extends Component {
                         className={s.input}
                         value={this.state.number}
                         onChange={this.saveContact}
-                        id={this.createId}
-                    ></input>
+                        id={this.createIdNumber}
+                    />
                 </label>
                 <button className={s.btn} type="submit">
                     Add contact
@@ -66,5 +69,10 @@ class Form extends Component {
         );
     }
 }
+
+Form.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.string,
+};
 
 export default Form;

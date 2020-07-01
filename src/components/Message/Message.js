@@ -1,13 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import s from './Message.module.css';
 
 const Message = ({ text }) => {
-    return (
-        <Fragment>
-            <div className={s.message}>{text}</div>
-        </Fragment>
-    );
+    return <div className={s.message}>{text}</div>;
 };
 
 export default Message;

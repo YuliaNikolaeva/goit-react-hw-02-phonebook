@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import s from './ContactItem.module.css';
+import s from './ContactsList.module.css';
 
-const ContactItem = ({ contactsList, onclickBtn }) => {
+const ContactsList = ({ contacts, onclickBtn }) => {
     return (
-        <Fragment>
-            {contactsList.map(item => (
-                <div className={s.contactBox} key={item.id}>
+        <>
+            {contacts.map(item => (
+                <li className={s.contactBox} key={item.id}>
                     <div className={s.name}>{item.name}</div>
                     <div className={s.number}>{item.number}</div>
                     <div className={s.btnBox}>
@@ -19,13 +19,13 @@ const ContactItem = ({ contactsList, onclickBtn }) => {
                             Delete
                         </button>
                     </div>
-                </div>
+                </li>
             ))}
-        </Fragment>
+        </>
     );
 };
 
-ContactItem.propTypes = {
+ContactsList.propTypes = {
     contactsList: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string,
@@ -34,4 +34,4 @@ ContactItem.propTypes = {
     ),
 };
 
-export default ContactItem;
+export default ContactsList;

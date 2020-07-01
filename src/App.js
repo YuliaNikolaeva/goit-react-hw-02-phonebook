@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import s from './App.module.css';
 
 import Form from './components/Form';
-import ContactItem from './components/ContactItem';
+import Container from './components/Container';
+import ContactsList from './components/ContactsList';
 import Filter from './components/Filter';
 import Message from './components/Message';
 
@@ -27,31 +28,28 @@ export default class App extends Component {
             name: newContact.name,
             number: newContact.number,
         };
-        const isCorrectImput =
-            contactItem.name.length !== 0 && contactItem.name.number !== 0;
-        const isNewContactDublicate = contacts.find(
+        const isCorrectInput =
+            contactItem.name.length !== 0 && contactItem.number.length !== 0;
+
+        const isNewContactDublicate = contacts.some(
             contact => contact.name === newContact.name.trim(),
         );
-        console.log(isNewContactDublicate);
 
-        if (isCorrectImput) {
-            if (!isNewContactDublicate) {
-                this.setState(({ contacts }) => ({
-                    contacts: [contactItem, ...contacts],
-                }));
-            } else {
-                alert(`${newContact.name.trim()} is alredy in contacts`);
-            }
-        } else {
+        if (!isCorrectInput) {
             alert('One or more fields is full');
+            return;
         }
+
+        isNewContactDublicate
+            ? alert(`${newContact.name.trim()} is alredy in contacts`)
+            : this.setState({ contacts: [contactItem, ...contacts] });
     };
 
     changeFilter = e => {
         this.setState({ filter: e.currentTarget.value });
     };
 
-    getVisibleTodos = () => {
+    getVisibleContacts = () => {
         const { contacts, filter } = this.state;
         const normalizerFilter = filter.toLocaleLowerCase();
         return contacts.filter(contact =>
@@ -59,7 +57,7 @@ export default class App extends Component {
         );
     };
 
-    deledeContact = idForDel => {
+    deleteContact = idForDel => {
         this.setState(prevState => ({
             contacts: prevState.contacts.filter(
                 prevContact => prevContact.id !== idForDel,
@@ -68,26 +66,32 @@ export default class App extends Component {
     };
 
     render() {
-        const visibleContacts = this.getVisibleTodos();
+        const visibleContacts = this.getVisibleContacts();
         return (
             <div className={s.page__wrapper}>
-                <h1>Phonebook</h1>
-                {this.state.contacts.length > 1 && (
-                    <Filter
-                        value={this.state.filter}
-                        onChange={this.changeFilter}
-                    />
-                )}
-                <Form propsOnSubmit={this.addContact} />
-                <h2>Contacts</h2>
-                {this.state.contacts.length > 0 ? (
-                    <ContactItem
-                        contactsList={visibleContacts}
-                        onclickBtn={this.deledeContact}
-                    />
-                ) : (
-                    <Message text={'Phonebook is empty'} />
-                )}
+                <Container title={'Phonebook'}>
+                    {this.state.contacts.length > 1 && (
+                        <Filter
+                            value={this.state.filter}
+                            onChange={this.changeFilter}
+                        />
+                    )}
+
+                    <Form propsOnSubmit={this.addContact} />
+                </Container>
+
+                <Container title={'Contacts'}>
+                    {this.state.contacts.length > 0 ? (
+                        <ul>
+                            <ContactsList
+                                contacts={visibleContacts}
+                                onclickBtn={this.deleteContact}
+                            />
+                        </ul>
+                    ) : (
+                        <Message text={'Phonebook is empty'} />
+                    )}
+                </Container>
             </div>
         );
     }
