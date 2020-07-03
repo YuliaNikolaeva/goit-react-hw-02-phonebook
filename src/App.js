@@ -31,18 +31,21 @@ export default class App extends Component {
         const isCorrectInput =
             contactItem.name.length !== 0 && contactItem.number.length !== 0;
 
-        const isNewContactDublicate = contacts.some(
-            contact => contact.name === newContact.name.trim(),
-        );
-
         if (!isCorrectInput) {
             alert('One or more fields is full');
             return;
         }
 
-        isNewContactDublicate
-            ? alert(`${newContact.name.trim()} is alredy in contacts`)
-            : this.setState({ contacts: [contactItem, ...contacts] });
+        const isNewContactDublicate = contacts.some(
+            contact => contact.name === newContact.name.trim(),
+        );
+
+        if (isNewContactDublicate) {
+            alert(`${newContact.name.trim()} is alredy in contacts`);
+            return;
+        }
+
+        this.setState({ contacts: [contactItem, ...contacts] });
     };
 
     changeFilter = e => {

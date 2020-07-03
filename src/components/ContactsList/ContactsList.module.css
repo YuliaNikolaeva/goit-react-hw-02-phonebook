@@ -11,16 +11,6 @@
     text-align: center;
 }
 
-.name,
-.number {
-    align-self: center;
-}
-
 .contactBox:not(:last-child) {
     margin-bottom: 7px;
-}
-
-.btn {
-    padding: 3px 10px;
-    cursor: pointer;
 }

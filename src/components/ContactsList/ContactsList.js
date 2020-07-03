@@ -3,35 +3,29 @@ import PropTypes from 'prop-types';
 
 import s from './ContactsList.module.css';
 
+import ContactItem from '../ContactIItem';
+
 const ContactsList = ({ contacts, onclickBtn }) => {
+    console.log();
     return (
-        <>
-            {contacts.map(item => (
-                <li className={s.contactBox} key={item.id}>
-                    <div className={s.name}>{item.name}</div>
-                    <div className={s.number}>{item.number}</div>
-                    <div className={s.btnBox}>
-                        <button
-                            className={s.btn}
-                            type="button"
-                            onClick={() => onclickBtn(item.id)}
-                        >
-                            Delete
-                        </button>
-                    </div>
+        <ul>
+            {contacts.map(contact => (
+                <li className={s.contactBox} key={contact.id}>
+                    <ContactItem contactItem={contact} onClick={onclickBtn} />
                 </li>
             ))}
-        </>
+        </ul>
     );
 };
 
 ContactsList.propTypes = {
-    contactsList: PropTypes.arrayOf(
+    contacts: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string,
             number: PropTypes.string,
         }),
     ),
+    onclickBtn: PropTypes.func,
 };
 
 export default ContactsList;
