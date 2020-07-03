@@ -79,7 +79,7 @@ export default class App extends Component {
                             onChange={this.changeFilter}
                         />
                     )}
-
+                    ;
                     <Form propsOnSubmit={this.addContact} />
                 </Container>
 
