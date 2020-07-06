@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import s from './App.module.css';
 
-import Form from './components/Form';
+import ContactForm from './components/ContactForm';
 import Container from './components/Container';
 import ContactsList from './components/ContactsList';
 import Filter from './components/Filter';
@@ -80,17 +80,15 @@ export default class App extends Component {
                         />
                     )}
                     ;
-                    <Form propsOnSubmit={this.addContact} />
+                    <ContactForm OnSubmit={this.addContact} />
                 </Container>
 
                 <Container title={'Contacts'}>
                     {this.state.contacts.length > 0 ? (
-                        <ul>
-                            <ContactsList
-                                contacts={visibleContacts}
-                                onclickBtn={this.deleteContact}
-                            />
-                        </ul>
+                        <ContactsList
+                            contacts={visibleContacts}
+                            onclickBtn={this.deleteContact}
+                        />
                     ) : (
                         <Message text={'Phonebook is empty'} />
                     )}

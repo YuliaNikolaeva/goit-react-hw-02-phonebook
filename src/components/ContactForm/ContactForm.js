@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import s from './Form.module.css';
+import s from './ContactForm.module.css';
 
-class Form extends Component {
+class ContactForm extends Component {
     state = {
         name: '',
         number: '',
@@ -25,7 +25,7 @@ class Form extends Component {
     submitContact = e => {
         e.preventDefault();
 
-        this.props.propsOnSubmit(this.state);
+        this.props.OnSubmit(this.state);
         this.reset();
     };
 
@@ -70,9 +70,9 @@ class Form extends Component {
     }
 }
 
-Form.propTypes = {
+ContactForm.propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
 };
 
-export default Form;
+export default ContactForm;

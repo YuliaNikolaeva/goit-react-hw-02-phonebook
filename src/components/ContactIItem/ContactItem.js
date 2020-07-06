@@ -20,6 +20,7 @@ ContactItem.propTypes = {
     contactItem: PropTypes.shape({
         name: PropTypes.string,
         number: PropTypes.string,
+        id: PropTypes.string,
     }),
     onClick: PropTypes.func,
 };

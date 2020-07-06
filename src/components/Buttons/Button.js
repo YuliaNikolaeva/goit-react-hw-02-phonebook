@@ -9,7 +9,6 @@ const Button = ({ onClick, contactId }) => {
             type="button"
             onClick={() => onClick(contactId)}
         >
-            {' '}
             Delete
         </button>
     );

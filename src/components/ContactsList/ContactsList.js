@@ -6,7 +6,6 @@ import s from './ContactsList.module.css';
 import ContactItem from '../ContactIItem';
 
 const ContactsList = ({ contacts, onclickBtn }) => {
-    console.log();
     return (
         <ul>
             {contacts.map(contact => (
@@ -21,11 +20,9 @@ const ContactsList = ({ contacts, onclickBtn }) => {
 ContactsList.propTypes = {
     contacts: PropTypes.arrayOf(
         PropTypes.shape({
-            name: PropTypes.string,
-            number: PropTypes.string,
+            id: PropTypes.string,
         }),
     ),
-    onclickBtn: PropTypes.func,
 };
 
 export default ContactsList;
